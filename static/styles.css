@@ -1,0 +1,99 @@
+/* General Styles */
+body {
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text for contrast */
+}
+
+/* Sidebar Styles */
+#sidebar {
+    width: 250px;
+    background: #1e1e1e; /* Slightly lighter dark for sidebar */
+    padding: 20px;
+    overflow-y: auto;
+    border-right: 1px solid #333;
+}
+
+#sidebar h3 {
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+/* Video Item Styles */
+.video-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; /* Separation between items */
+    padding-bottom: 10px;
+    border-bottom: 1px solid #333; /* Separator line */
+}
+
+.video-item input {
+    margin-right: 10px;
+    accent-color: #1e90ff; /* Checkbox color */
+}
+
+.video-item a {
+    cursor: pointer;
+    color: #1e90ff; /* Link color */
+    text-decoration: none;
+    flex-grow: 1;
+}
+
+.video-item a:hover {
+    text-decoration: underline;
+}
+
+/* Content Area Styles */
+#content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #1a1a1a;
+}
+
+#video-player {
+    flex-grow: 1;
+    background: #0c0c0c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+video {
+    max-width: 100%;
+    max-height: 100%;
+    border: 2px solid #1e90ff;
+    border-radius: 5px;
+}
+
+/* Progress Bar Styles */
+#progress-container {
+    height: 40px;
+    background: #333;
+    position: relative;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #003366, #1e90ff); /* Dark blue gradient */
+    position: relative;
+    transition: width 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#progress-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+    pointer-events: none;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Video Player</title>
+    <!-- Link to External CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div id="sidebar">
+        <h3>Videos</h3>
+        {% for video in videos %}
+        <div class="video-item">
+            <input type="checkbox" class="video-checkbox" data-index="{{ loop.index0 }}">
+            <a onclick="loadVideo('{{ video }}')">{{ video }}</a>
+        </div>
+        {% endfor %}
+    </div>
+    <div id="content">
+        <div id="video-player">
+            <video id="player" controls>
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div id="progress-container">
+            <div id="progress-bar">
+                <span id="progress-text">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const videos = {{ videos|tojson }};
+        const player = document.getElementById('player');
+        const checkboxes = document.querySelectorAll('.video-checkbox');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+
+        function loadVideo(video) {
+            player.src = '/videos/' + encodeURIComponent(video);
+            player.play();
+        }
+
+        function updateProgress() {
+            let checked = 0;
+            checkboxes.forEach(cb => {
+                if(cb.checked) checked +=1;
+            });
+            const percentage = videos.length ? Math.round((checked / videos.length) * 100) : 0;
+            progressBar.style.width = percentage + '%';
+            progressText.textContent = percentage + '%';
+        }
+
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', updateProgress);
+        });
+
+        // Initialize progress
+        updateProgress();
+    </script>
+</body>
+</html>
